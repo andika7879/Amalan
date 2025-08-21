@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratibul Haddad Tahlil & Yasin Interaktif</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6h+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: Aplikasi ini menggunakan struktur satu halaman (SPA) dengan navigasi tab di bagian atas untuk beralih antara tiga bagian utama: 'Alhaddad', 'Tahlil', dan 'Yasin'. Struktur ini dipilih untuk kemudahan penggunaan, memungkinkan pengguna untuk langsung melompat ke bagian yang diinginkan tanpa perlu menggulir panjang. Setiap item dzikir disajikan dalam format kartu yang rapi, memisahkan teks Arab, transliterasi, dan terjemahan untuk kejelasan maksimal. Interaksi utama adalah navigasi tab yang mengubah konten yang ditampilkan secara dinamis menggunakan JavaScript, memberikan pengalaman yang mulus dan fokus. -->
+    <!-- Visualization & Content Choices: Konten dari dokumen "Ratibul Haddad" diatur ke dalam tiga kategori logis yang sesuai dengan alur bacaan wirid. Tujuannya adalah untuk 'Mengorganisir' dan 'Menginformasikan'. Presentasi menggunakan kartu HTML/CSS (Bootstrap) yang terstruktur. Interaksi utama adalah klik pada tab navigasi yang akan menampilkan/menyembunyikan bagian konten yang relevan. Pilihan ini dibuat untuk menyederhanakan navigasi dan membuat konten yang padat menjadi lebih mudah diakses dan tidak membanjiri pengguna. Tidak ada visualisasi data (grafik), sehingga tidak memerlukan Chart.js atau Plotly. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF8F0;
+            color: #495057;
+        }
+        .arabic-text {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.75rem;
+            line-height: 2.5rem;
+            direction: rtl;
+            text-align: right;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+            background-color: transparent;
+            color: #6c757d;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-button:hover {
+            color: #495057;
+        }
+        .nav-button.active {
+            background-color: #8D6E63;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #e9ecef;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-4 px-3 px-md-5 mx-auto" style="max-width: 960px;">
+        
+        <header class="text-center mb-5">
+            <h1 class="display-5 fw-bold" style="color: #4E342E;">Amalan</h1>
+            <p class="text-muted mt-2">Panduan Dzikir dan Tahlil Interaktif</p>
+        </header>
+
+        <nav class="d-flex justify-content-center bg-white bg-opacity-75 rounded-pill shadow-sm mb-5 border border-light sticky-top" style="top: 1rem; backdrop-filter: blur(5px);">
+            <button onclick="showSection('Alhaddad')" class="nav-button active flex-fill text-center py-2 px-4 rounded-pill" data-section="Alhaddad">Alhaddad</button>
+            <button onclick="showSection('Tahlil')" class="nav-button flex-fill text-center py-2 px-4 rounded-pill" data-section="Tahlil">Tahlil</button>
+            <button onclick="showSection('Yasin')" class="nav-button flex-fill text-center py-2 px-4 rounded-pill" data-section="Yasin">Yasin</button>
+        </nav>
+
+        <main>
+            <!-- Section Alhaddad -->
+            <section id="Alhaddad" class="content-section active">
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">1. Al-Fatihah untuk Nabi Muhammad ﷺ</h2>
+                    <p class="arabic-text">إِلَى حَضْرَةِ سَيِّدِنَا وَشَفِيْعِنَا وَنَبِيِّنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، الفاتحة</p>
+                    <p class="text-muted fst-italic mt-3">ila ḫadlrati sayyidinâ wa syafî`inâ wa nabiyyinâ wa maulânâ Muḫammadin shallallâhu `alaihi wa sallama, al-fâtihah..</p>
+                    <p class="mt-3">Al-Fatihah untuk tuan kami, pemberi syafaat kami, Nabi kami, dan majikan kami Nabi Muhammad ﷺ.</p>
+                </div>
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">2. Surah Al-Fatihah</h2>
+                    <p class="arabic-text">أَعُوْذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيْمِ. بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ، الرَّحْمٰنِ الرَّحِيْمِۙ، مٰلِكِ يَوْمِ الدِّيْنِۗ، اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُۗ، اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَۙ، صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ. اٰمِيْن</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhir-raḫamânir-raḫaîm(i). Al-ḫamdulillâhi rabbil-`âlamîn(a). Arraḫmânir-raḫîm. Mâliki yaumid-dîn(i). Iyyâka na`budu wa iyyâka nasta`în(u). Ihdinash-shirâtal-mustqîm(a). Shirâtal-ladzîna an`amta `alaihim ghairil-maghdûbi `alaihim wa lâdl-dlâllîn(a). âmîn</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Segala puji bagi Allah, Tuhan semesta alam. Yang maha pengasih lagi maha penyayang. Yang menguasai hari pembalasan. Hanya kepada-Mu kami menyembah. Hanya kepada-Mu pula kami memohon pertolongan. Tunjukkanlah kami ke jalan yang lurus, yaitu jalan orang-orang yang telah Kauanugerahi nikmat kepada mereka, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat. Semoga Kaukabulkan permohonan kami.</p>
+                </div>
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">3. Ayat Kursi (QS. Al-Baqarah: 255)</h2>
+                    <p class="arabic-text">اَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ ەۚ لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَــاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَــاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhu lâ ilâha illâ huw, al-ḫayyul-qayyûm, lâ ta'khudzuhû sinatuw wa lâ na'ûm, lahû mâ fis-samâwâti wa mâ fil-ardl, man dzalladzî yasyfa‘u ‘indahû illâ bi'idznih, ya‘lamu mâ baina aidîhim wa mâ khalfahum, wa lâ yuḫîthûna bisyai'im min ‘ilmihî illâ bimâ syâ', wasi‘a kursiyyuhus-samâwâti wal-ardl, wa lâ ya'ûduhû ḫifdhuhumâ, wa huwal-‘aliyyul-‘adhîm.</p>
+                    <p class="mt-3">Allah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus mengurus (makhluk-Nya), tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan apa yang ada di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang di hadapan mereka dan apa yang di belakang mereka, dan mereka tidak mengetahui sesuatu apa pun tentang ilmu-Nya melainkan apa yang Dia kehendaki. Kursi-Nya meliputi langit dan bumi. Dan Dia tidak merasa berat memelihara keduanya, dan Dia Mahatinggi, Mahabesar.</p>
+                </div>
+                 <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">4. Dua Ayat Terakhir Surah Al-Baqarah</h2>
+                    <p class="arabic-text">اٰمَنَ الرَّسُوْلُ بِمَآ اُنْزِلَ اِلَيْهِ مِنْ رَّبِّهٖ وَالْمُؤْمِنُوْنَۗ كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلٰۤىِٕكَتِهٖ وَكُتُبِهٖ وَرُسُلِهٖۗ لَا نُفَرِّقُ بَيْنَ اَحَدٍ مِّنْ رُّسُلِهٖۗ وَقَالُوْا سَمِعْنَا وَاَطَعْنَا غُفْرَانَكَ رَبَّنَا وَاِلَيْكَ الْمَصِيْرُ، لَا يُكَلِّفُ اللّٰهُ نَفْسًا اِلَّا وُسْعَهَاۗ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْۗ رَبَّنَا لَا تُؤَاخِذْنَآ اِنْ نَّسِيْنَآ اَوْ اَخْطَأْنَاۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ اِصْرًا كَمَا حَمَلْتَهٗ عَلَى الَّذِيْنَ مِنْ قَبْلِنَاۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهٖۚ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</p>
+                    <p class="text-muted fst-italic mt-3">Âmanar-rasûlu bimâ unzila ilaihi min rabbihi wal-mu’minûn(a). kullun âmana billâhi wa malâ’ikatihi wa kutubihi wa rusulihi lâ nufarriqu baina aḫadin min rusulih(i). wa qâlû sami`nâ wa atha’nâ ghufrânaka rabbanâ wa ilaikal-mashîr(u). Lâ yukallifullâhu nafsan illâ wus`ahâ, lahâ mâ kasabat wa `alaihâ maktasabat, rabbanâ lâ tu`âkhidznâ in nasînâ au akhṭa’nâ, rabbanâ wa lâ taḥmil `alainâ iṣran kamâ ḫamaltahụ 'alalladzina min qablinâ, rabbanâ wa lâ tuḫammilnâ mâ lâ ṭâqata lanâ bih(i), wa`fu `annâ, waghfir lanâ, warḫamnâ, anta maulânâ fanṣurnâ `alal-qaumil-kâfirīn(a).</p>
+                    <p class="mt-3">Rasulullah dan orang-orang yang beriman mempercayai apa saja yang diturunkan kepadanya dari Tuhannya. Semuanya beriman kepada Allah, para malaikat-Nya, kitab-kitab-Nya, dan kepada para utusan-Nya. ‘Kami tidak membeda-bedakan seorang rasul dari lainnya.’ Mereka berkata, ‘Kami mendengar dan kami menaati. Ampunan-Mu, wahai Tuhan kami, yang kami harapkan. Hanya kepada-Mu tempat kembali.’ Allah tidak membebani seseorang kecuali dengan kemampuannya. Ia mendapat balasan atas apa yang dia perbuat dan siksaan dari apa yang dia lakukan. ‘Tuhan kami, janganlah Kau siksa kami jika kami terlupa atau salah. Tuhan kami, jangan Kau tanggungkan pada kami dengan beban berat sebagaimana Kaubebankan kaum sebelum kami. Jangan pula Kaubebankan pada kami sesuatu yang kami tidak mampu. Ampunilah kami. Kasihanilah kami. Kau pemimpin kami. Tolonglah kami menghadapi golongan kafir.</p>
+                </div>
+                                    <div class="card">
+                    <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيْكَ لَهُ.لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِيْ وَيُمِيْتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ</p>
+                    <p class="text-muted fst-italic mt-3">Lâ ilâha illallâhu waḫdahu lâ syarîka lah(u). lahul-mulku wa lahul-ḫamdu yuḫyî wa yumîtu wa huwa `ala kulli syai’in qadîr(un).</p>
+                    <p class="mt-3">Tidak ada Tuhan selain Allah dengan kesendirian-Nya. tidak ada sekutu bagi-Nya. Bagi-Nya segala kekuasaan, dan bagi-Nya segala pujian. Dialah yang menghidupkan dan yang mematikan, dan Dia sangat berkuasa atas segala sesuatu.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">سُبْحَــانَ اللهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</p>
+                    <p class="text-muted fst-italic mt-3">Subḫânallâhi wal-ḫamdulillâhi wa lâ ilâha illallâhu wallâhu akbar(u).</p>
+                    <p class="mt-3">Maha suci Allah, segala puji bagi Allah, Tidak ada Tuhan selain Allah. Allah Mahabesar.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">سُبْحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللهِ الْعَظِيْمِ</p>
+                    <p class="text-muted fst-italic mt-3">Subḫânallâhi wa biḫamdihi subḫânallâhil-`adhîm(i).</p>
+                    <p class="mt-3">Mahasuci Allah segala puji khusus bagi-Nya, Mahasuci Allah Yang Mahaagung.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">رَبَّنَا اغْفِرْ لَنَا وَتُبْ عَلَيْنَا إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيْمُ</p>
+                    <p class="text-muted fst-italic mt-3">Rabbanâghfir lanâ wa tub `alainâ innaka antat-tawwabur-raḫîm(u).</p>
+                    <p class="mt-3">Tuhan kami, ampunilah dosa kami dan terimalah taubat kami. Sungguh, Engkau Maha Menerima Taubat lagi Maha Penyayang.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                 <div class="card">
+                    <p class="arabic-text">اَللّٰهُمَّ صَلِّ عَلَى سَيْدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhumma shalli `ala sayyidinâ Muḫammadin, allâhumma shalli `alaihi wa sallim.</p>
+                    <p class="mt-3">Ya Allah, limpahkanrahmat kepada tuan kami Muhammad, Ya Allah, limpahkanrahmatdan kesejahteraan kepada Nabi Muhammad.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">أَعُوْذُ بِكَلِمَاتِ اللهِ التَّآمَّاتِ مِنْ شَرِّ مَا خَلَقَ</p>
+                    <p class="text-muted fst-italic mt-3">A`ûdzu bikalimâtillâhit-tâmmâti min syarri mâ khalaq(a).</p>
+                    <p class="mt-3">Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk-Nya.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">بِسْـمِ اللهِ الَّذِيْ لَا يَضُـرُّ مَعَ اسْـمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَـآءِ وَهُوَ السَّمِيْـعُ الْعَلِيْـمُ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhil-ladzî lâ yadurru ma`asmihi syai’un fil-ardli wa lâ fis-samâ’i wa huwas-samî`ul-`alîm(u).</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang tidak adaapapun yang mebersamai nama-Nya bisa meberikan bencana di bumi maupun di langit. Dia Maha Mendengar Lagi Maha Mengetahui.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">رَضِيْنَا بِاللهِ رَبًّا وَبِالْإِسْـلَامِ دِيْنًا وَبِمُحَمَّدٍ نَبِيًّا وَرَسُوْلًا</p>
+                    <p class="text-muted fst-italic mt-3">Radlînâ billâhi rabban wa bil-islâmi dînan wa bimuḫammadin nabiyyan wa rasûla(n).</p>
+                    <p class="mt-3">Kami ridha Allah sebagai Tuhan, Islam sebagai agama, dan Muhammad sebagai nabi dan rasul.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">بِسْمِ اللهِ وَالْحَمْدُ لِلّٰهِ وَالْخَيْرُ وَالشَّـرُّ بِمَشِيْئَـةِ اللهِ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhi wal-ḫamdulillâhi wal-khairu wasy-syarru bimasyî’atillâhi.</p>
+                    <p class="mt-3">Dengan nama Allah, segala pujian bagi-Nya, dan segala kebaikan dan kejahatan adalah kehendak Allah.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">اٰمَنَّا بِاللهِ وَالْيَوْمِ الْاٰخِرِ تُبْنَا إِلَى اللهِ بَاطِنًا وَظَاهِرًا</p>
+                    <p class="text-muted fst-italic mt-3">Âmannâ billâhi wal-yaumil-âkhiri tubnâ ilalllâhi bâthinan wa dhâhiran.</p>
+                    <p class="mt-3">Kami beriman kepada Allah dan hari akhir. Kami bertaubat kepada Allah batin dan lahir.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَا رَبَّنَا وَاعْفُ عَنَّا وَامْحُ الَّذِيْ كَانَ مِنَّا</p>
+                    <p class="text-muted fst-italic mt-3">Yâ rabbanâ wa`fu `annâ wamḫul-ladzî kâna minnâ.</p>
+                    <p class="mt-3">Ya Tuhan kami, maafkan kami dan hapuskanlah apa-apa (dosa) yang ada pada kami.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَا ذَاالْجَلَالِ وَالْإِكْرَامِ أَمِتْنَا عَلَى دِيْنِ الْإِسْلَامِ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ dzal-jalâli wal-ikrâmi amitnâ `ala dînil-islâmi.</p>
+                    <p class="mt-3">Wahai Tuhan, Dzat yang mempunyai sifat keagungan dan sifat pemurah, matikanlah kami dalam keadaan beragama Islam.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 7x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَا قَوِيُّ يَا مَتِيْنُ، اِكْفِ شَرَّ الظَّالِمِيْـنَ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ qawiyyu yâ matînu ikfi syarradh-dhâlimîn(a).</p>
+                    <p class="mt-3">Wahai Tuhan yang Mahakuat lagi Mahagagah, hindarkanlah kami dari kejahatan orang-orang yang zalim.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">أَصْلَحَ اللهُ أُمُوْرَ الْمُسْلِمِيْنَ صَرَفَ اللهُ شَرَّ الْمُؤْذِيْنَ</p>
+                    <p class="text-muted fst-italic mt-3">Ashlahallâhul umûral-muslimîna sharafallâhu syarral-mu’dzîna.</p>
+                    <p class="mt-3">Semoga Allah memperbaiki urusan-urusan kaum muslimim dan menghindarkan mereka dari kejahatan orang-orang yang suka menyakiti.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يـَا عَلِيُّ يـَا كَبِيْرُ يـَا عَلِيْمُ يـَا قَدِيْرُ يـَا سَمِيْعُ يـَا بَصِيْرُ يـَا لَطِيْفُ يَـــا خَبِيْرُ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ `aliyyu yâ kabîru yâ `alîmu yâ qadîru yâ samî`u yâ bashîru yâ lathîfu yâ khabîr(u).</p>
+                    <p class="mt-3">Wahai Tuhan yang Mahamulia, lagi Mahabesar, Maha Mengetahui, Mahakuasa, Maha Mendengar, Maha Melihat, Mahalemah-lembut lagi Maha Mengetahui.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَا فَارِجَ الْهَمِّ يَا كَاشِفَ الْغَّمِّ يَا مَنْ لِعَبْدِهِ يَغْفِرُ وَيَرْحَمُ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ farijal-hammi yâ kâsyifal-ghammi yâ man li`abdihi yaghfiru wa yarḫam(u).</p>
+                    <p class="mt-3">Wahai Dzat yang menyenangkan orang yang sedang galau, Wahai Dzat yang melapangkan kesedihan. Wahai Dzat yang mengampuni dan menyayangi hamba-Nya.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">أَسْتَغْفِرُ اللهَ رَبَّ الْبَرَايَا أَسْتَغْفِرُ اللهَ مِنَ الْخَطَايَا</p>
+                    <p class="text-muted fst-italic mt-3">Astaghfirullâha rabbal-barâyâ astaghfirullahâ minal-khathâyâ.</p>
+                    <p class="mt-3">Aku memohon ampun kepada Allah, Tuhannya semua makhluk. Aku memohon ampunan kepada Allah dari segala kesalahan.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 4x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ</p>
+                    <p class="text-muted fst-italic mt-3">Lâ ilâha illallâhu.</p>
+                    <p class="mt-3">Tidak ada Tuhan selain Allah.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 50x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">مُحَمَّدٌ رَسُوْلُ اللهِ صَلَّى اللهُ عَلَيْهِ وَاٰلِهِ وَسَلَّمَ</p>
+                    <p class="text-muted fst-italic mt-3">Muhammadun rasûlullâhi shallallâhu `alaihi wa âlihi wa sallama.</p>
+                    <p class="mt-3">Muhammad utusan Allah, semoga Allah mencurahkan rahmat dan kesejahteraan kepadanya beserta keluarganya.</p>
+                </div>
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">1. Doa Perlindungan (Surah Al-Ikhlas)</h2>
+                    <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ اَحَدٌۚ، اَللّٰهُ الصَّمَدُۚ، لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ، وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَـــــدٌ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhir-rahmânir-rahîm(i). Qul huwallâhu ahad(un), Allâhush-shamad(u), lam yalid wa lam yûlad, wa lam yakun lahu kufuwan ahad(un).</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah (Muhammad), “Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. (Allah) tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia.”</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">2. Doa Perlindungan (Surah Al-Falaq)</h2>
+                    <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ، مِنْ شَرِّ مَـــا خَلَقَۙ، وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ، وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ، وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhir-rahmânir-rahîm(i). Qul a`ûdzu birabbil-falaq(i), min syarri mâ khalaq(a), wa min syarri ghâsiqin idzâ waqab(a), wa min syarrin-naffatsâti fil-`uqad(i), wa min syarri hâsidin idzâ hasad(a).</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang Maha Pengasih lagi Maha Penyayang. Katakanlah, ‘Aku berlindung kepada tuhan yang menguasai waktu subuh dari kejahatan makhluk-Nya. Dari kejahatan malam apabila telah gelap gulita. Dan dari kejahatan wanita-wanita tukang sihir yang mengembus nafasnya pada buhul-buhul. Dan dari kejahatan orang-orang yang dengki apabila ia mendengki.’</p>
+                </div>
+                <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">3. Doa Perlindungan (Surah An-Nas)</h2>
+                    <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ، مَلِكِ النَّـــاسِۙ، اِلٰهِ النَّاسِۙ، مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِۖ، الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ، مِنَ الْجِنَّةِ وَالنَّــاسِ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhir-rahmânir-rahîm(i), Qul a`udhû bi rabbin-nâs, malikin-nâs, ilahin-nâs, min syarril-waswâsil khannâs, alladzi yuwaswisu fî shudûrin-nâs, minal-jinnati wan-nâs.</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah, ‘Aku berlindung kepada tuhan manusia, raja manusia. Sesembahan manusia, dari kejahatan bisikan setan yang biasa bersembunyi. Yang membisikkan kejahatan ke dalam dada manusia. Dari setan dan manusia.’</p>
+                </div>
+                    <div class="card">
+        <p class="arabic-text">اَلْفَاتِحَةُ إِلَى سَيِّدِنَا وَشَفِعِيْنَا رَسُوْلِ اللهِ ﷺ وَاٰلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَاتِهِ أَنَّ اللهَ يُعْلِيْ دَرَجَاتِهِمْ فِي الْجَنَّةِ وَيَنْفَعُنَا بِأَسْرَارِهِمْ وَأَنْوَارِهِمْ وَعُلُوْمِهِمْ وَبَرَكَاتِهِمْ فِي الدِّيْنِ وَالدُّنْيَا وَالْاٰخِرَةِ، وَأَنَّ اللهَ يَجْعَلُنَا مِنْ حِزْبِهِمْ وَيَرْزُقُنَا مَحَبَّتَهُمْ وَيَتَوَفَّانَا عَلَى مِلَّتِهِمْ وَيَحْشُرُنَا فِيْ زُمْرَتِهِمْ فِيْ خَيْرٍ وَلُطْفٍ وَعَافِيَةٍ، اَلْفَاتِحَةُ</p>
+        <p class="text-muted fst-italic mt-3">Al-fâtiḫata ilâ sayyidinâ wa wa syafi`înâ rasulillâhi shallallâhu 'alaihi wasallam wa âlihi wa ash-ḫâbihi wa azwâjihi wa dzurriyatihi anna-Llâha yu`lî darajâtihim fil jannati wa yanfa'unâ bi asrârihim wa anwârihi wa `ulûmihim wa barakâtihim fid diîni wad dun-yâ wal âkhirah, wa annallâha jaj'alunâ min ḫizbihim wa yarzuqunâ mahabbatahum wa yatawaffanâ `alâ millatihim wa yaḫsyurunâ fî zumratihim fî khairin wa luthfin wa 'âfiyatin, al-fâtiḫah</p>
+        <p class="mt-3">Al-fatihah untuk ruh tuan kami, kekasih dan pemberi syafaat kami Rasulullah, Muhammad beserta keluarga, sahabat-sahabat, para istri, keturunan, dan ahli baitnya. Semoga Allah meninggikan derajat mereka di surga, memberikan manfaat kepada kami sebab rahasia-rahasia mereka, cahaya-cahaya mereka, ilmu-ilmu mereka, dan keberkahan-keberkahan mereka, baik dalam urusan agama, dunia, maupun di akhirat. Dan semoga Allah menjadikan kami termasuk menjadi kelompok mereka. Semoga Allah menganugerahi kami bisa mencintai mereka, Allah mematikan kami sesuai agama mereka, Allah mengumpulkan kami bersama kelompok mereka dengan kebaikan, kelembutan, dan kesejahteraan. Al-Fatihah.</p>
+    </div>
+    
+
+    <div class="card">
+        <p class="arabic-text">اَلْفَاتِحَةُ إِلَى سَيِّدِنَا الْمُهَاجِرِ إِلَى اللهِ أَحْمَدَ بْنِ عِيْسَى وَسَيِّدِنَا الْفَقِيْهِ الْمُقَدَّمِ مُحَمَّدٍ ࣙ بْنِ عَلِيٍّ بَاعَلَوِيٍّ وَعَمِّهِ السَّيِّدِ عَلَوِيٍّ بَاعَلَوِيٍّ وَصَاحِبِ الرَّاتِبِ الْحَبِيْبِ عَبْدِ اللهِ بِنْ عَلَوِيٍّ ࣙ بِنْ مُحَمَّدٍ ࣙ الْحَدَّادِ وَمَشَايِخِهِمْ وَتَلَامِيْذِهِمْ وَأُصُولِهِمْ وَفُرُوعِهِمْ وَجَمِيْعِ سَادَاتِنَا اٰلِ بَاعَلَوِيٍّ أَنَّ اللهَ يَغْفِرُ لَهُمْ وَيَرْحَمُهُمْ وَ يُعْلِيْ دَرَجَاتِهِمْ فِي الْجَنَّةِ وَيَنْفَعُنَا بِأَسْرَارِهِمْ وَأَنْوَارِهِمْ وَعُلُوْمِهِمْ وَبَرَكَاتِهِمْ فِي الدِّيْنِ وَالدُّنْياَ وَالْاٰخِرَةِ، بِسِرِّ الْفَاتِحَةِ</p>
+        <p class="text-muted fst-italic mt-3">Al-fâtiḫatu ilâ sayydinâ al-muhâjir ilâ-Llâh aḫmada-bni ‘îsâ wa sayyidinâl faqîh al-muqaddami muḫammadin-ibni ‘aliyyin bâ ‘alawî wa shâḫibir râtib al-ḫabîb ‘abdillahi-bni ‘alawiyin-ibni muhammadin al-ḫaddâd wa masyâyikhihim wa talâmidzihim wa ushûlihim wa furû’ihim wa jamî‘I sâdâtinâ âli bâ‘alawîyyin annallâha yaghfiru lahum wa yarḫamuhum wa yu‘lî darajâtihim fil jannati wa yanfa‘unâ bi asrârihim wa anwârihim wa ‘ulûmihim wa barkâtihim fid dîni wad dunyâ wal âkhirah bi sirril fâtiḫah</p>
+        <p class="mt-3">Al-Fatihah untuk ruh tuan kami, al-Muhajir Ahmad bin Isa dan tuan kami ai-Faqih al-Muaaddam Muhammad bin Ali Ba 'Alawi dan pemannya Sayyid Alawi Ba 'Alawi dan pemilik Ratib Habib Abduliah bin Alawi al-Haddad bersama guru-guru mereka, murid-murid mereka, leluhur-nasab dan keturunan mereka beserta semua keluarga tuan kami dan keluarga Ba 'Alawi. Semoga Allah mengampuni mereka, mengasihi mereka, dan meninggikan derajat mereka di surga,. Semoga Allah memberikan manfaat kepada kita berkat rahasia-rahasia mereka, cahaya-cahaya mereka, ilmu-ilmu mereka, dan keberkahan-keberkahan mereka baik dalam urusan agama, dunia, maupun di akhirat, dengan rahasia al-Fatihah.</p>
+    </div>
+    
+
+    <div class="card">
+        <p class="arabic-text">اَلْفَاتِحَةُ إِلَى أَرْوَاحِ الْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالْأَئِمَّةِ الرَّاشِدِيْنَ ثُمَّ إِلَى أَرْوَاحِ وَالِدِيْنَا وَمشَايِخِنَا وَذَوِي الْحُقُوْقِ عَلَيْنَا وَعَلَيْهِمْ أَجْمَعِيْنَ. ثُمَّ إِلَى أَرْوَاحِ أَمْوَاتِ هٰذِهِ الْبَلْدَةِ مِنَ الْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ وَالْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ أَنَّ اللهَ يَغْفِرُ لَهُمْ وَيَرْحَمُهُمْ وَ يُسْكِنُهُمْ فِي الْجَنَّةِ وَيَنْفَعُنَا بِأَسْرَارِهِمْ وَأَنْوَارِهِمْ وَعُلُوْمِهِمْ وَبَرَكَاتِهِمْ فِي الدِّيْنِ وَالدُّنْيَا وَالْاٰخِرَةِ، بِسِرِّ الْفَاتِحَةِ</p>
+        <p class="text-muted fst-italic mt-3">Al-fâtiḫatu ilâ arwâḫil auliyâ’ wasy syuhadâ’ wash shâliḫîn wal aimmatir râsyidîn, tsumma ilâ arwâḫil wâlidîna wa masyâyikhinâ wa dzawil ḫuqûqi ‘alainâ wa ‘alaihim ajma‘în. Tsumma ilâ arwâḫi amwâti hâdzihil baldari minal mu’minîna wal mu’minâti wal muslimîna wal muslimâti anna-Llâha yaghfiru lahum wa yarḫamuhu wa yuskinuhum fil jannati wa yanfa‘unâ bi asrârihim wa anwârihim wa ‘ulûmihim wa barakâtihim fid dîni wad dunyâ wal âkhirah, bisirrihim al-fâtihah</p>
+        <p class="mt-3">Al-Fatihah untuk para wali, syuhada', orang-orang saleh, para imam yang memberi petunjuk. Kemudian kepada arwah orang-orang tua kita, guru-guru kita, orang-orang yang mempunyai hak atas kita, dan kepada mereka semuanya. Kemudian kepede para ruh keluarga kita yang telah meninggal dunia dan semua orang Islam yang telah meninggal baik dari orang-orang mu'min laki-laki dan perempuan, muslim laki-laki dan perempuan. Semoga Allah mengampuni mereka, mengasihi mereka, dan menempatkan mereka di surga. Semoga Allah memberikan manfaat kepada kita berkat rahasia-rahasia mereka, cahaya-cahaya mereka, ilmu-ilmu mereka, dan keberkahan-keberkahan mereka baik dalam urusan agama, dunia, maupun di akhirat, dengan rahasia al-Fatihah.</p>
+    </div>
+    
+
+    <div class="card">
+        <p class="arabic-text">اَلْفَاتِحَةُ بِالْقَبُوْلِ وَتَمَامِ كُلِّ سُؤْلٍ وَمَأْمُوْلٍ وَصَلَاحِ الشَّأْنِ ظَاهِرًا وَبَاطِنًا فِي الدُّنْيَا وَالْاٰخِرَةِ دَافِعَةً لِكُلِّ شَرٍّ جَالِبَةً لِكُلِّ خَيْرٍ لَنَا وَلِوَالِدِيْنَا وَمَشَايِخِنَا فِي الدِّيْنِ مَعَ اللُّطْفِ وَالْعَافِيَةِ وَعَلَى نِيَّةِ أَنَّ اللهَ يُنَوِّرُ قُلُوْبَنَا وَقوَالِبَنَا مَعَ التُّقَى وَالْعَفَافِ وَالْغِنَى وَالْمَوْتِ عَلَى دِيْنِ الْإِسْلَامِ وَالْإِيْمَانِ بِلَا مِحْنَةٍ وَلَا امْتِحَانٍ بِحَقِّ سَيِّدِ وَلَدِ عَدْنَانَ وَعَلَى كُلِّ نِيَّةٍ صَالِحَةٍ وَإِلَى حَضْرَةِ النَّبِيِّ مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَاٰلِهِ وَسَلَّمَ، بِسِرِّ الْفَاتِحَةِ</p>
+        <p class="text-muted fst-italic mt-3">Al-fâtiḫatu bi qabûli wa tamâmi su’lin wa ma’mUlin wa shalâḫisy sya’ni dhâhiran wa bâthinan fid dunyâ wal âkhirati dâfi‘an li kulli syarrin jâlibatan li kulli khairin lanâ wa li wâlidînâ wa masyâyikhinâ fid dîni ma‘al luthfi wal ‘âfiyati wa ‘alâ biyyati anna-Llâha yunawwiru qulûbanâ wa qawâlibanâ ma‘attuqâ wal ‘afâfa wal ghinâ wal mauti ‘alâ dînil islâm wal îmâni bilâ miḫnatin wa lamtiḫânin bi ḫaqqi sayyidi waladi ‘adnâna wa ‘alâ kulli niyyatin shâliḫatin wa ilâ ḫadlratin nabiyyi muḫammadin shallallâhu ‘alaihi wa âlihi wasallam, bisirril fâtiḫah</p>
+        <p class="mt-3">Al-Fatihah dengan harapan diterimanya amal, sempurnanya semua permohonan dan cita-cita, kebaikan sikap baik luar maupun dalam di dunia dan akhirat; menolak semua keburukan, menarik semua kebaikan untuk kita, orang-orang tua kita, guru-guru kita, dalam urusan agarna, beserta dengan kelembutan, kesejahteraan, dan dengan niat semoga Allah menerangi hati-hati kita serta mendapatkan petunjuk takwa, terjaga dari keburukan, tidak membutuhkan selain Allah, mati dalam keedaan beragama Islam tanpa ada ujian yang berarti, melalui perantara Nabi Muhemmad yang menjadi keturunan Adnan dan dengan setiap niat yang baik. Kepada Nabi Muhammad, melalui perantara rahasia al-Fatihah.</p>
+    </div>
+                 <div class="card">
+                    <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">5. Doa Penutup</h2>
+                    <p class="arabic-text">اَللّٰهُمَّ إِنَّا نَسْـأَلُكَ رِضَـاكَ وَالْجَنَّـةَ، وَنَـعُوْذُ بِكَ مِنْ سَـخَطِكَ وَالنَّـارِ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhumma innâ nas’aluka ridlâka wal-jannata wa na`udzûbika min sakhathika wan-nâr(i).</p>
+                    <p class="mt-3">Wahai Tuhan kami, sesungguhnya kami mohon ridla dan surga-Mu dan kami berlindung kepada-Mu dari murka-Mu dan api neraka.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَاعَالِمَ السِّرِّ مِنَّا لَاتَهْتِكِ السِّتْرَ عَنَّا وَعَافِنَا وَاعْفُ عَنَّا وَكُنْ لَنَا حَيْثُ كُنَّا</p>
+                    <p class="text-muted fst-italic mt-3">Yâ `Alimas-sirri minnâ lâ tahtikis-sitra `annâ wa `âfinâ wa`fu `annâ wa kun lanâ haitsu kunnâ.</p>
+                    <p class="mt-3">Wahai Dzat yang Maha Mengetahui segala rahasia kami, janganlah kiranya Engkau bongkar tirai rahasia kami (aib), berilah kami ‘afiat (kesejahteraan) dan maafkanlah kami dan lindungilah-tolonglah kami dimanapun kami berada.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَا اَللهُ بِهَا يَا اَللهُ بِهَا يَا اَللهُ بِحُسْنِ الْخَاتِمَةِ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ Allâhu bihâ Yâ Allâhu bihâ Yâ Allâhu biḫusnil-khâtimah.</p>
+                    <p class="mt-3">Ya Allah dengan penutup, ya Allah dengan penutup, ya Allah kami minta ditutup usia kami dengan husnul khatimah.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">يَالَطِيْفًا لَمْ يَزَلْ اُلْطُفْ بِنَا فِيْمَا نَزَلْ. إِنَّكَ لَطِيْفٌ لَمْ تَزَلْ اُلْطُفْ بِنَا وَالْمُسْلِمِيْنَ</p>
+                    <p class="text-muted fst-italic mt-3">Yâ lathîfan lam yazal ulthuf binâ fîmâ nazal, innaka lathîfun lam tazal, ulthuf binâwal-muslimîn(a).</p>
+                    <p class="mt-3">Wahai Dzat yang Mahalembut yang tidak akan pernah hilang, bersikaplah lembut kepada kami atas apa saja yang turun kepada kami. Sesungguhnya Engkau Maha Lembut tidak akan pernah bergeser sedikit pun. Berlemah-lembutlah kepada kami dan juga kaum muslimin sekalian.</p>
+                    <p class="text-end fw-semibold mt-2" style="color: #8D6E63;">Dibaca 3x</p>
+                </div>
+                <div class="card">
+                                        <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">DOA</h2>
+                    <p class="arabic-text">بِسْم اللهِ الرَّحْمنِ الرَّحِيْمِ. الْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِينَ، حَمْدًا يُوَافِيْ نِعَمَهُ وَيُكَافِئُ مَزِيْدَهُ، يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ</p>
+                    <p class="text-muted fst-italic mt-3">Bismillâhir-rahmânir-rahîm(i). Al-hamdulillâhi rabbil-âlamîna. ḫamdan yuwâfî wa yukâfi’u mazîdahu, yâ rabbanâ lakal-ḫamdu kamâ yanbaghî lijalâli wajhika wa `adhîmi sulthânika.</p>
+                    <p class="mt-3">Dengan menyebut nama Allah yang Maha Pengasih lagi Maha Penyayang. Segala bagi Allah Tuhan seru sekalian alam. Pujian yang menepati nikmat-nikmatnya dan mencukupi kelebihannya. Ya Tuhan kami, hanya bagi-Mu segala puji sebagaimana yang layak untuk keagungan-Mu dan keagungan kerajaan-Mu.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">سُبْحَانَكَ لَا نُحْصِيْ ثَنَاءً عَلَيْكَ أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ، فَلَكَ الْحَمْدُ حَتَّى تَرْضَى، وَلَكَ الْحَمْدُ إِذَا رَضِيْتَ، وَلَكَ الْحَمْدُ بَعْدَ الرِّضَى</p>
+                    <p class="text-muted fst-italic mt-3">Subḫânaka lâ nuḫshî tsanâ’an `alaika anta kamâ atsnaita `ala nafsika, falakal-ḫamdu ḫatta tardla, walakal-ḫamdu idza radlaita wa lakal-hamdu ba`dar-ridla.</p>
+                    <p class="mt-3">Mahasuci Engkau. Kami tidak akan bisa menghitung pujaan bagi-Mu sebagaimana Engkau memuji Dzat-Mu sendiri. Hanya bagi-Mu segala puji sehingga Engkau akan meridhainya, hanya milik-Mu segala puji ketika Engkau sudah meridhainya, hanya milik-Mu segala puji setelah ridha.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي الْأَوَّلِيْنَ، وَصَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي اْلاٰخِرِيْنَ، وَصَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي كُلِّ وَقْتٍ وَحِيْنٍ، وَصَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ فِي الْمَلَإِ اْلأَعْلَى إِلَى يَوْمِ الدِّيْنِ، وَصَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ حَتَّى تَرِثَ الْأَرْضَ وَمَنْ عَلَيْهَا وَأَنْتَ خَيْرُ الْوَارِثِيْنَ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhumma shalli wa sallim `ala sayyidinâ Muḫammadin fil-awwalîn(a). wa shalli wa sallim `ala sayyidinâ Muḫammadin fil-âkhirîn(a). wa shalli wa sallim `ala sayyidinâ Muḫammadin fî kulli waqtin wa ḫîni. wa shalli wa sallim `ala sayyidinâ Muḫammadin fil-malâ’il-a`la ila yaumid-dîni. wa shalli wa sallim `ala sayyidinâ Muḫammadin ḫatta taritsal-ardla wa man `alaihâ wa anta Khairul-wâritsîn(a).</p>
+                    <p class="mt-3">Ya Allah, limpahkan rahmat dan kesejahteraan untuk tuan kami, Nabi Muhammad pada masa orang-orang yang awal, limpahkan rahmat dan kesejahteraan untuk tuan kami, Nabi Muhammad pada masa orang-orang yang akhir, limpahkan rahmat dan kesejahteraan untuk tuan kami, Nabi Muhammad pada segala macam keadaan. limpahkan rahmat dan kesejahteraan untuk tuan kami, Nabi Muhammad sampai hari kiamat. limpahkan rahmat dan kesejahteraan untuk tuan kami, Nabi Muhammad sampai Engkau mewariskan bumi dan siapapun yang berada di atasnya. Engkau adalah Dzat yang Maha pemberi waris terbaik.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">اَللّٰهُمَّ إِنَّا نَسْتَحْفِظُكَ وَنَسْتَوْدِعُكَ أَدْيَانَنَا وَأَنْفُسَنَا وَأَمْوَالَنَا وَأَهْلَنَا وَكُلَّ شَيْءٍ أَعْطَيْتَنَا</p>
+                    <p class="text-muted fst-italic mt-3">Allâhumma innâ nastahfidhuka wa nastaudi`uka adyânanâ wa anfusanâ wa amwâlanâ wa ahlanâ wa kulla syai’in a`thaitanâ.</p>
+                    <p class="mt-3">Ya Allah, sesungguhnya kami memohon penjagaan-Mu dan kami mohon perlindungan kepada-Mu untuk menjaga agama-agama, pribadi, harta, keluarga dan semua benda yang Engkau berikan kepada kami.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">اَللّٰهُمَّ اجْعَلْنَا وَإِيَّاهُمْ فِيْ كَنَفِكَ وَأَمَانِكَ وَعِيَاذِكَ مِنْ كُلِّ شَيْطَانٍ مَرِيْدٍ وَجَبَّارٍ عَنِيْدٍ وَذِيْ عَيْنٍ وَذِيْ بَغْيٍ وَذِيْ حَسَدٍ وَمِنْ شَرِّ كُلِّ ذِيْ شَرٍّ، إِنَّكَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhummaj-`alnâ wa iyyâhum fî kanafika wa amânatika wa`iyâdzika min kulli syaithâni marîdin wa jabbârin `anîdin wa dzî `ainin wa dzi baghyin wa dzi ḫasadin wa min syarri kulli dzî syarrin innaka `ala kulli syai’in qadîr(u)</p>
+                    <p class="mt-3">Ya Allah, jadikanlah kami dan mereka supaya berada di dalam pengawasan-Mu, keamanan-Mu, perlindungan-Mu, dari setiap setan durhaka yang selalu menindas, dari penyakit ‘ain, langkah kudeta, orang-orang dengki dan tiap-tiap kejahatan yang dilakukan oleh pelakunya. Sungguh, Engkau di atas segala sesuatu sangat berkuasa.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">اَللّٰهُمَّ حُطْنَا بِالتَّقْوَى وَالْاِسْتِقَامَةِ وَأَعِذْنَا مِنْ مُوْجِبَاتِ النَّدَامَةِ فِي الْحَالِ وَالْمَاٰلِ، إِنَّكَ سَمِيْعُ الدُّعَاءِ</p>
+                    <p class="text-muted fst-italic mt-3">Allâhumma ḫuthnâ bit-taqwa wal-istiqâmati wa a`idznâ min mûjibâtin-nadâmati fil-ḫâli wal-mâli innaka sami`ud-du`a(i).</p>
+                    <p class="mt-3">Ya Allah, liputi kami dengan takwa dan istiqamah.. Lindungi kami dari hal-hal yang bisa mengakibatkan penyesalan baik seketika maupun di kemudian hari. Sesungguhnya Engkau adalah Dzat yang Maha Mendengar doa.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">وَصَلِّ اللّٰهُمَّ بِجَلَالِكَ وَجَمَالِكَ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ أَجْمَعِيْنَ، وَارْزُقْنَا كَمَالَ الْمُتَابَعَةِ لَهُ ظَاهِرًا وَبَاطِنًا يَا أَرْحَمَ الرَّاحِمِيْنَ</p>
+                    <p class="text-muted fst-italic mt-3">Wa shalli Allâhumma bijalâlika wa jamâlika `ala sayyidinâ Muḫammadin wa `ala âlihi wa shaḫbihi ajma`în(a). warzuqnâ kamâlal-mutâba`ata lahu dhâhiran wa bâthinan yâ arḫamar-râḫimîn(a)</p>
+                    <p class="mt-3">Limpahkan rahmat Ya Allah dengan keagungan dan keindahan-Mu untuk tuan kami, Muhammad beserta keluarga dan sahabatnya semua. Berikan kami anugerah rezeki berupa kesempurnaan mengikuti Nabi secara lahir batin, Wahai Dzat yang paling mengasihi di antara para pengasih.</p>
+                </div>
+                <div class="card">
+                    <p class="arabic-text">بِفَضْلِ سُبْحَانَ رَبِّكَ رَبِّ الْعِزَّةِ عَمَّا يَصِفُوْنَ. وَسَلَامٌ عَلَى الْمُرْسَلِيْنَ وَالْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِيْنَ</p>
+                    <p class="text-muted fst-italic mt-3">Bifadl-li subḫâna rabbika rabbil-`izzati `ammâ yashifûn(a). wa salâmun `alal-mursalîna wal-ḫamdulillâhi rabbil-`âlamîn(a).</p>
+                    <p class="mt-3">Dengan keutamaanMahasuci Tuhanmu Tuhan yang Mahamulia dari segala tuduhan yang mereka sifatkan. Kesejahteraan atas para Rasul. Segala puji bagi Allah Tuhan semesta alam.</p>
+                </div>
+                </section>
+
+            <!-- Section Tahlil -->
+            <section id="Tahlil" class="content-section">
+    <div class="card">
+        <p class="arabic-text">إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى سَيِّدِنَا مُحمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ وَاٰلِهِ وَأَزْوَاجِهِ وَأَوْلَادِهِ وَذُرِّيَّاتِهِ الْفَــاتِحَةُ</p>
+        <p class="text-muted fst-italic mt-3">Ila hadratin nabiyyil musthafa sayyidina Muhammadin shallallahu 'alaihi wa sallam wa alihi wa azwajihi wa auladihi wa zurriyatihi, al-fatihah.</p>
+        <p class="mt-3">Kepada yang terhormat Nabi Muhammad ﷺ, segenap keluarga, istri-istrinya, anak-anaknya, dan keturunannya. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka semua. Al-Fatihah…</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالصَّحَابَةِ وَالتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي وَخُصُوْصًا إِلَى مُؤَسِّسِيْ جَمْعِيَّةِ نَهْضَةِ الْعُلَمَاءِ الْفَــاتِحَةُ</p>
+        <p class="text-muted fst-italic mt-3">Summa ila hadrati ikhwanihi minal anbiya'i wal mursalin wal auliya'i wasy-syuhada'i was-shalihin was-shahabati wat tabi'in wal-'ulama'il-'amilin wal-mushannifinal-mukhlisin wa jami'il malaikatil-muqarrabin, khusushan ila sayyidinas-syaikh 'abdil qadir al-jilani wa khusushan ila muassisi jam'iyyah Nahdlatil Ulama, al-fatihah.</p>
+        <p class="mt-3">Lalu kepada segenap saudara beliau dari kalangan pada nabi, rasul, wali, syuhada, orang-orang saleh, sahabat, tabi'in, ulama al-amilin (yang mengamalkan ilmunya), ulama penulis yang ikhlas, semua malaikat Muqarrabin, terkhusus kepada Syekh Abdul Qadir al-Jilani dan para pendiri organisasi Nahdlatul Ulama. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka semua. Al-Fatihah.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنْ أَحْسَنَ إِلَيْنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ الْفَاتِحَةُ</p>
+        <p class="text-muted fst-italic mt-3">Summa ila jami'i ahlil-quburi minal-muslimina wal-muslimati wal-mu'minina wal-mu'minati min masyariqil-ardli ila magharibiha barriha wa bahriha khushushan ila aba'ina wa ummahatina wa ajdadina wa jaddatina wa masyayikhina wa masyayikhi masyayikhina wa asatizati asatizatina wa liman ahsana ilaina wa liman ijtama'na hahuna bisababihi, al-fatihah.</p>
+        <p class="mt-3">Kemudian kepada semua ahli kubur Muslimin, Muslimat, Mukminin, Mukminat dari Timur ke Barat, baik di laut dan di darat, khususnya bapak kami, ibu kami, kakek kami, nenek kami, guru kami, pengajar dari guru kami, mereka yang telah berbuat baik kepada kami, dan bagi ahli kubur/arwah yang menjadi sebab kami berkumpul di sini. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka semua. Al-Fatihah.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ اَحَدٌۚ، اَللّٰهُ الصَّمَدُۚ، لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ، وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَـــــدٌ ×٣</p>
+        <p class="text-muted fst-italic mt-3">Bismillahirrahmanirrahim. Qul huwallahu ahad, Allahus-shamad, lam yalid wa lam yulad, wa lam yakul lahu kufuwan ahad. (3x)</p>
+        <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah (Muhammad), “Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. (Allah) tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia.” (3 kali).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallahu wallahu akbar.</p>
+        <p class="mt-3">Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ، مِنْ شَرِّ مَـــا خَلَقَۙ، وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ، وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ، وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ</p>
+        <p class="text-muted fst-italic mt-3">Bismillahirrahmanirrahim. Qul a'uzu birabbil-falaq, min syarri ma khalaq, wa min syarri ghasiqin iza waqab, wa min syarrin-naffasati fil-'uqad, wa min syarri hasidin iza hasad.</p>
+        <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah, “Aku berlindung kepada Tuhan yang menguasai subuh (fajar), dari kejahatan (makhluk yang) Dia ciptakan, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan (perempuan-perempuan) penyihir yang meniup pada buhul-buhul (talinya), dan dari kejahatan orang yang dengki apabila dia dengki.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallahu wallahu akbar.</p>
+        <p class="mt-3">Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ، مَلِكِ النَّـــاسِۙ، اِلٰهِ النَّاسِۙ، مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِۖ، الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ، مِنَ الْجِنَّةِ وَالنَّــاسِ</p>
+        <p class="text-muted fst-italic mt-3">Bismillahirrahmanirrahim. Qul a'uzu birabbin-nas, malikin-nas, ilahin-nas, min syarril-waswasil khannas, allazi yuwaswisu fi shudurin-nas, minal-jinnati wan-nas.</p>
+        <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Katakanlah, “Aku berlindung kepada Tuhannya manusia, raja manusia, sembahan manusia, dari kejahatan (bisikan) setan yang bersembunyi, yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallahu wallahu akbar.</p>
+        <p class="mt-3">Tiada tuhan yang layak disembah kecuali Allah. Allah maha besar.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ، الرَّحْمٰنِ الرَّحِيْمِۙ، مٰلِكِ يَوْمِ الدِّيْنِۗ، اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُۗ، اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَۙ، صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ</p>
+        <p class="text-muted fst-italic mt-3">Bismillahirrahmanirrahim. Alhamdulillahi rabbil-'alamin, ar-rahmanir-rahim, maliki yaumid-din, iyyaka na'budu wa iyyaka nasta'in, ihdinas-siratal-mustaqim, siratallazina an'amta 'alaihim ghairil-magdubi 'alaihim walad-dallin. Amin.</p>
+        <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Segala puji bagi Allah, Tuhan semesta alam. Yang maha pengasih lagi maha penyayang. Yang menguasai hari pembalasan. Hanya kepada-Mu kami menyembah. Hanya kepada-Mu pula kami memohon pertolongan. Tunjukkanlah kami ke jalan yang lurus, yaitu jalan orang-orang yang telah Kauanugerahi nikmat kepada mereka, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat. Semoga Kaukabulkan permohonan kami.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، الۤــــــمّۤۚ، ذٰلِكَ الْكِتٰبُ لَا رَيْبَۛ فِيْهِۛ هُدًى لِّلْمُتَّقِيْنَۙ، الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَۙ، وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَآ اُنْزِلَ اِلَيْكَ وَمَآ اُنْزِلَ مِنْ قَبْلِكَ ۚ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَۗ، اُولٰۤىِٕكَ عَلٰى هُدًى مِّنْ رَّبِّهِمْۙ وَاُولٰۤىِٕكَ هُمُ الْمُفْلِحُوْنَ</p>
+        <p class="text-muted fst-italic mt-3">Bismillahirrahmanirrahim. Alif Lam Mim. Zalikal-kitabu la raiba fih, hudal lil-muttaqin, allazina yu'minuna bil-gaibi wa yuqimunas-salata wa mimma razaqnahum yunfiqun, wallazina yu'minuna bima unzila ilaika wa ma unzila min qablik, wa bil-akhirati hum yuqinun, ula'ika 'ala hudam mir rabbihim wa ula'ika humul-muflihun.</p>
+        <p class="mt-3">Dengan menyebut nama Allah yang maha pengasih lagi maha penyayang. Alif lam mim. Demikian itu kitab ini tidak ada keraguan padanya. Sebagai petunjuk bagi mereka yang bertakwa. Yaitu mereka yang beriman kepada yang ghaib, yang mendirikan shalat, dan menafkahkan sebagian rezeki yang kami anugerahkan kepada mereka. Dan mereka yang beriman kepada kitab Al-Qur’an yang telah diturunkan kepadamu (Muhammad ﷺ) dan kitab-kitab yang telah diturunkan sebelumnya, serta mereka yakin akan adanya kehidupan akhirat. Mereka itulah yang tetap mendapat petunjuk dari tuhannya. Merekalah orang orang yang beruntung.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَإِلٰهُكُمْ إِلٰهٌ وَّاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيمُ</p>
+        <p class="text-muted fst-italic mt-3">Wa ilahukum ilahuw wahid, la ilaha illa huwar-rahmanur-rahim.</p>
+        <p class="mt-3">Artinya, “Dan Tuhan kalian adalah Tuhan yang maha esa. Tiada tuhan yang layak disembah kecuali Dia yang maha pengasih lagi maha penyayang.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ ەۚ لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ</p>
+        <p class="text-muted fst-italic mt-3">Allahu la ilaha illa huwal-hayyul-qayyum, la ta'khuzuhu sinatuw wa la naum, lahu ma fis-samawati wa ma fil-ard, man zallazi yasyfa'u 'indahu illa bi'iznih, ya'lamu ma baina aidihim wa ma khalfahum, wa la yuhituna bisyai'im min 'ilmihi illa bima sya', wasi'a kursiyyuhus-samawati wal-ard, wa la ya'uduhu hifzuhuma, wahuwal-'aliyyul-'azim.</p>
+        <p class="mt-3">Allah, tiada yang layak disembah kecuali Dia yang hidup kekal lagi berdiri sendiri. Tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan di bumi. Tiada yang dapat memberikan syafaat di sisi-Nya kecuali dengan izin-Nya. Dia mengetahui apa yang ada di hadapan dan di belakang mereka. Mereka tidak mengetahui sesuatu dari ilmu-Nya kecuali apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dia tidak merasa berat menjaga keduanya. Dia maha tinggi lagi maha agung.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">أَسْتَغْفِرُ اللهَ الْعَـــظِيْمَ ×٣</p>
+        <p class="text-muted fst-italic mt-3">Astaghfirullahal-'azim. (3x)</p>
+        <p class="mt-3">Saya mohon ampun kepada Allah yang maha agung (3 kali).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهُ لَا إِلٰهَ إِلَّا اللهُ، حَيٌّ مَوْجُوْدٌ</p>
+        <p class="text-muted fst-italic mt-3">Afdaluz-zikri fa'lam annahu la ilaha illallah, hayyun maujud.</p>
+        <p class="mt-3">Sebaik-baik zikir–ketahuilah–adalah lafal ‘La ilaha illallah’, tiada tuhan selain Allah, Dzat yang Mahahidup dan Wujud.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ، حَيٌّ مَعْبُوْدٌ</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallah, hayyun ma'bud.</p>
+        <p class="mt-3">Tiada tuhan selain Allah, Dzat yang mahahidup dan disembah.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَاَ إِلٰهَ إِلَّا اللهُ، حَيٌّ بَاقٍ</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallah, hayyun baq.</p>
+        <p class="mt-3">Tiada tuhan selain Allah, Dzat yang Mahahidup dan kekal.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا إِلٰهَ إِلَّا اللهُ ×١٠٠</p>
+        <p class="text-muted fst-italic mt-3">La ilaha illallah. (100x)</p>
+        <p class="mt-3">Tiada tuhan selain Allah (100 kali).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ ×٢</p>
+        <p class="text-muted fst-italic mt-3">Allahumma shalli 'ala sayyidina Muhammadin, Allahumma shalli 'alaihi wa sallim. (2x)</p>
+        <p class="mt-3">Ya Allah, limpahkan rahmat takzim dan keselamatan kepada pemimpin kami, Nabi Muhammad (2 kali).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">سُبحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللهِ الْعَظِيْمِ ×٣٣</p>
+        <p class="text-muted fst-italic mt-3">Subhanallahi wa bihamdihi, subhanallahil-'azim. (33x)</p>
+        <p class="mt-3">Mahasuci Allah dengan segala pujian untuk-Nya. Mahasuci Allah yang Mahaagung (33 kali)</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ ×٢</p>
+        <p class="text-muted fst-italic mt-3">Allahumma shalli 'ala habibika sayyidina Muhammadin wa 'ala alihi wa shahbihi wa sallim. (2x)</p>
+        <p class="mt-3">Ya Allah, limpahkan rahmat takzim dan keselamatan kepada kekasih-Mu, pemimpin kami, Nabi Muhammad, berikut keluarga dan sahabatnya (2 kali).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَبَارِكْ وَسَلِّمْ أَجْمَعِيْنَ</p>
+        <p class="text-muted fst-italic mt-3">Allahumma shalli 'ala habibika sayyidina Muhammadin wa 'ala alihi wa shahbihi wa barik wa sallim ajma'in.</p>
+        <p class="mt-3">Ya Allah, limpahkanlah rahmat kepada kekasih-Mu, pemimpin kami, Nabi Muhammad, berikut keluarga dan sahabatnya. Limpahkanlah pula berkah dan keselamatan kepada mereka semua.</p>
+    </div>
+    <div class="card">
+        <h2 class="fs-4 fw-semibold mb-3" style="color: #8D6E63;">DOA</h2>
+        <p class="arabic-text">أَعُوْذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيْمِ، بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ، الْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُّوَافِي نِعَمَهُ وَيُكَافِئُ مَزِيْدَهُ، يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ، اللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَّعَلَى اٰلِ سَيِّدِنَا مُحِمَّدٍ</p>
+        <p class="text-muted fst-italic mt-3">A'uzubillahi minasy-syaitanir-rajim, bismillahirrahmanirrahim, alhamdulillahi rabbil-'alamin, hamdasy-syakirin, hamdan-na'imin, hamdan yuwafi ni'amahu wa yukafi'u mazidah, ya rabbana lakal-hamdu kama yambagi lijalali wajhika wa 'azimi sulthanik, allahumma shalli 'ala sayyidina Muhammadin wa 'ala ali sayyidina Muhammad.</p>
+        <p class="mt-3">Aku berlindung diri kepada Engkau dari setan yang di rajam. Dengan nama Allah yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan seru sekalian alam, sebagaimana orang-orang yang bersyukur dan orang yang memperoleh nikmat sama memuji, dengan pujian yang sesuai dengan nikmatnya dan memungkinkan di tambah nikmatnya. Tuhan kami, hanya Engkau segala puji, sebagaimana yang patut terhadap kemuliaan Engkau dan keagungan Engkau. Ya Allah tambahkanlah kesejahteraan dan keselamatan kepada penghulu kami Nabi Muhammad dan kepada keluarganya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَاْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَى حَضَرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْyُنِنَا سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالصَّحَابَةِ وَالتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمُجَاهِدِيْنَ فِي سَبِيْلِ اللهِ رَبِّ الْعَلَمِيْنَ وَالْمَلَائِكَةِ الْمُقَرَّبِيْن، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِيّ، ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا خُصُوْصًا إِلَى آبَائِنَا وَاُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَنَخَصُّ خَصُوْصًا إِلَى مَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ</p>
+        <p class="text-muted fst-italic mt-3">Allahumma taqabbal wa aushil sawaba ma qara'nahu minal-qur'anil-'azim, wa ma hallalna wa ma sabbahna wa mastagfarna wa ma shallaina 'ala sayyidina Muhammadin shallallahu 'alaihi wa sallam, hadiyyatan washilatan wa rahmatan nazilatan wa barakatan syamilatan ila hadrati habibina wa syafi'ina wa qurrati a'yunina sayyidina wa maulana Muhammadin shallallahu 'alaihi wa sallam, wa ila jami'i ikhwanihi minal-anbiya'i wal-mursalin wal-auliya'i wasy-syuhada'i was-salihin was-sahabati wat-tabi'in wal-'ulama'il-'amilin wal-mushannifinal-mukhlisin wa jami'il-mujahidina fi sabilillahi rabbil-'alamin wal-mala'ikatil-muqarrabin, khusushan ila sayyidinas-syaikh 'abdil qadir al-jilani, summa ila arwahi jami'i ahlil-quburi minal-muslimina wal-muslimati wal-mu'minina wal-mu'minati min masyariqil-ardli wa magharibiha barriha wa bahriha khushushan ila aba'ina wa ummahatina wa ajdadina wa jaddatina, wa nakhussu khusushan ila man ijtama'na hahuna bisababihi wa li'ajlih.</p>
+        <p class="mt-3">Ya Allah, terimalah dan sampaikanlah pahala ayat-ayat Quranul ‘adhim yang telah kami baca, tahlil kami, tasbih dan istighfar kami, dan bacaan shalawat kami kepada penghulu kami Nabi Muhammad dan kepada keluarganya. Sebagai hadiah yang bisa sampai, rahmat yang turun, dan berkah yang cukup kepada kekasih kami, penolong dan buah mata kami, penghulu dan pemimpin kami, yaitu Nabi Muhammad ﷺ, kepada semua temannya dari para Nabi dan para Utusan, kepada para wali, pahlawan yang gugur (Syuhada), orang-orang yang salih, para sahabat, dan tabi’in (para pengikutnya); kepada para ulama yang mengamalkan ilmunya, para pengarang yang ikhlas, kepada semua pejuang di jalan Allah (membela agama-Nya), Allah raja seru sekalian alam; dan kepada para Malaikat muqarrabin, terutama Syekh Abdul Qadir al-Jilani, kemudian kepada ahli kubur, muslim yang laki-laki dan yang perempuan, mukmin yang laki-laki dan yang perempuan, dari dunia timur dan barat di darat dan di laut, terutama lagi kepada bapak-bapak kami, ibu-ibu kami, nenek-nenek kami yang laki-laki dan yang perempuan, lebih terutama lagi kepada orang yang menyebabkan kami sekalian berkumpul di sini dan untuk keperluannya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَى أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَّسُوْلُ اللهِ</p>
+        <p class="text-muted fst-italic mt-3">Allahummagfirlahum warhamhum wa 'afihim wa'fu 'anhum, allahumma anzilir-rahmata wal-magfirata 'ala ahlil-quburi min ahli la ilaha illallahu muhammadur-rasulullah.</p>
+        <p class="mt-3">Ya Allah ampunilah mereka, kasihanilah mereka, dan maafkanlah mereka. Ya Allah turunkanlah rahmat, dan ampunan kepada ahlul kubur yang ahli mengucapkan “Laa ilaaha illaallah, Muhammadur rasulullah” (Tidak ada tuhan selain Allah, Muhammad Utusan Allah).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">رَبَّنَا أَرِنَا الْحَقَّ حَقًّا وَّارْزُقْنَا اتِّبَاعَهُ، وَأَرِنَا الْبَاطِلَ بَاطِلًا وَّارْزُقْنَا اجْتِنَابَهُ، رَبَّنَا اٰتِنَا فِي الدُّنْيَا حَسَنَةً وَّفِي الْآخِرَةِ حَسَنَةً وَّقِنَا عَذَابَ النَّارِ، سُبْحَانَ رَبِّكَ رَبِّ الْعِزَّةِ عَمَّا يَصِفُوْنَ وَسَلَامٌ عَلَى الْمُرْسَلِيْنَ وَالْحَمْدُ لِلّٰهِ رَبِّ الْعَلَمِيْنَ، اَلْفَاتِحَة</p>
+        <p class="text-muted fst-italic mt-3">Rabbana arinal-haqqa haqqan warzuqnat-tiba'ah, wa arinal-batila batilan warzuqnaj-tinabah. Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'azaban-nar. Subhana rabbika rabbil-'izzati 'amma yasifun, wa salamun 'alal-mursalin, wal-hamdulillahi rabbil-'alamin. Al-fatihah.</p>
+        <p class="mt-3">Tuhan kami, tunjukkanlah kami kebenaran dengan jelas, jadikanlah kami pengikutnya, tunjukkanlah kami perkara batil dengan jelas, dan jadikanlah kami menjauhinya. Tuhan kami, berikanlah kami kebaikan di dunia dan kebaikan di akhirat, dan jagalah kami dari siksa api neraka, Maha Suci Tuhanku, tuhan yang bersih dari sifat yang di berikan oleh orang-orang kafir, semoga keselamatan tetap melimpahkan kepada para Utusannya dan segala puji bagi Allah Tuhan seru sekalian Alam. Al Fatihah.</p>
+    </div>
+</section>
+
+            <!-- Section Yasin -->
+            <section id="Yasin" class="content-section">
+    <div class="card">
+        <p class="arabic-text">يٰسۤۚ ۝١</p>
+        <p class="text-muted fst-italic mt-3">yâ sîn</p>
+        <p class="mt-3">Yā Sīn.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَالْقُرْاٰنِ الْحَكِيْمِۙ ۝٢</p>
+        <p class="text-muted fst-italic mt-3">wal-qur'ânil-ḫakîm</p>
+        <p class="mt-3">Demi Al-Qur’an yang penuh hikmah,</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّكَ لَمِنَ الْمُرْسَلِيْنَۙ ۝٣</p>
+        <p class="text-muted fst-italic mt-3">innaka laminal-mursalîn</p>
+        <p class="mt-3">sesungguhnya engkau (Nabi Muhammad) benar-benar salah seorang dari rasul-rasul</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">عَلٰى صِرَاطٍ مُّسْتَقِيْمٍۗ ۝٤</p>
+        <p class="text-muted fst-italic mt-3">‘alâ shirâthim mustaqîm</p>
+        <p class="mt-3">(yang berada) di atas jalan yang lurus,</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">تَنْزِيْلَ الْعَزِيْزِ الرَّحِيْمِۙ ۝٥</p>
+        <p class="text-muted fst-italic mt-3">tanzîlal-‘azîzir-raḫîm</p>
+        <p class="mt-3">(sebagai wahyu) yang diturunkan oleh (Allah) Yang Mahaperkasa lagi Maha Penyayang,</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لِتُنْذِرَ قَوْمًا مَّآ اُنْذِرَ اٰبَاۤؤُهُمْ فَهُمْ غٰفِلُوْنَ ۝٦</p>
+        <p class="text-muted fst-italic mt-3">litundzira qaumam mâ undzira âbâ'uhum fa hum ghâfilûn</p>
+        <p class="mt-3">agar engkau (Nabi Muhammad) memberi peringatan kepada suatu kaum yang nenek moyang mereka belum pernah diberi peringatan, sehingga mereka lalai.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَقَدْ حَقَّ الْقَوْلُ عَلٰٓى اَكْثَرِهِمْ فَهُمْ لَا يُؤْمنُوْنَ ۝٧</p>
+        <p class="text-muted fst-italic mt-3">laqad ḫaqqal-qaulu ‘alâ aktsarihim fa hum lâ yu'minûn</p>
+        <p class="mt-3">Sungguh, benar-benar berlaku perkataan (ketetapan takdir) terhadap kebanyakan mereka, maka mereka tidak akan beriman.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّا جَعَلْنَا فِيْٓ اَعْنَاقِهِمْ اَغْلٰلًا فَهِيَ اِلَى الْاَذْقَانِ فَهُمْ مُّقْمَحُوْنَ ۝٨</p>
+        <p class="text-muted fst-italic mt-3">innâ ja‘alnâ fî a‘nâqihim aghlâlan fa hiya ilal-adzqâni fa hum muqmaḫûn</p>
+        <p class="mt-3">Sesungguhnya Kami telah memasang belenggu di leher mereka, lalu (tangan mereka yang terbelenggu diangkat) ke dagu, karena itu mereka tertengadah.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَجَعَلْنَا مِنْۢ بَيْنِ اَيْدِيْهِمْ سَدًّا وَّمِنْ خَلْفِهِمْ سَدًّا فَاَغْشَيْنٰهُمْ فَهُمْ لَا يُبْصِرُوْنَ ۝٩</p>
+        <p class="text-muted fst-italic mt-3">wa ja‘alnâ mim baini aidîhim saddaw wa min khalfim saddan fa aghsyainâhum fa hum lâ yubshirûn</p>
+        <p class="mt-3">Kami memasang penghalang di hadapan mereka dan di belakang mereka, sehingga Kami menutupi (pandangan) mereka. Mereka pun tidak dapat melihat.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَسَوَاۤءٌ عَلَيْهِمْ ءَاَنْذَرْتَهُمْ اَمْ لَمْ تُنْذِرْهُمْ لَا يُؤْمِنُوْنَ ۝١٠</p>
+        <p class="text-muted fst-italic mt-3">wa sawâ'un ‘alaihim a andzartahum am lam tundzir-hum lâ yu'minûn</p>
+        <p class="mt-3">Sama saja bagi mereka, apakah engkau (Nabi Muhammad) memberi peringatan kepada mereka atau tidak. Mereka (tetap) tidak akan beriman.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّمَا تُنْذِرُ مَنِ اتَّبَعَ الذِّكْرَ وَخَشِيَ الرَّحْمٰنَ بِالْغَيْبِۚ فَبَشِّرْهُ بِمَغْفِرَةٍ وَّاَجْرٍ كَرِيْمٍ ۝١١</p>
+        <p class="text-muted fst-italic mt-3">innamâ tundziru manittaba‘adz-dzikra wa khasyiyar-raḫmâna bil-ghaîb, fa basysyir-hu bimaghfiratiw wa ajring karîm</p>
+        <p class="mt-3">Sesungguhnya engkau (Nabi Muhammad) hanya (bisa) memberi peringatan kepada orang-orang yang mau mengikutinya dan yang takut kepada Tuhan Yang Maha Pengasih tanpa melihat-Nya. Berilah mereka kabar gembira dengan ampunan dan pahala yang mulia.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّا نَحْنُ نُحْيِ الْمَوْتٰى وَنَكْتُبُ مَا قَدَّمُوْا وَاٰثَارَهُمْۗ وَكُلَّ شَيْءٍ اَحْصَيْنٰهُ فِيْٓ اِمَامٍ مُّبِيْنٍࣖ ۝١٢</p>
+        <p class="text-muted fst-italic mt-3">innâ naḫnu nuḫyil-mautâ wa naktubu mâ qaddamû wa âtsârahum, wa kulla syai'in aḫshainâhu fî imâmim mubîn</p>
+        <p class="mt-3">Sesungguhnya Kamilah yang menghidupkan orang-orang yang mati dan Kami (pulalah) yang mencatat apa yang telah mereka kerjakan dan bekas-bekas yang mereka (tinggalkan). Segala sesuatu Kami kumpulkan dalam kitab induk yang nyata (Lauh Mahfuz).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَاِذَا قِيْلَ لَهُمُ اتَّقُوْا مَا بَيْنَ اَيْدِيْكُمْ وَمَا خَلْفَكُمْ لَعَلَّكُمْ تُرْحَمُوْنَ ۝٤٥</p>
+        <p class="text-muted fst-italic mt-3">wa idzâ qîla lahumuttaqû mâ baina aidîkum wa mâ khalfakum la‘allakum tur-ḫamûn</p>
+        <p class="mt-3">Ketika dikatakan kepada mereka, “Takutlah kamu akan (siksa) yang ada di hadapanmu (di dunia) dan azab yang ada di belakangmu (akhirat) agar kamu mendapat rahmat,” (maka mereka berpaling).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَمَا تَأْتِيْهِمْ مِّنْ اٰيَةٍ مِّنْ اٰيٰتِ رَبِّهِمْ اِلَّا كَانُوْا عَنْهَا مُعْرِضِيْنَ ۝٤٦</p>
+        <p class="text-muted fst-italic mt-3">wa mâ ta'tîhim min âyatim min âyâti rabbihim illâ kânû ‘an-hâ mu‘ridlîn</p>
+        <p class="mt-3">Tidak satu pun dari tanda-tanda (kebesaran) Tuhan datang kepada mereka, kecuali mereka berpaling darinya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَاِذَا قِيْلَ لَهُمْ اَنْفِقُوْا مِمَّا رَزَقَكُمُ اللّٰهُۙ قَالَ الَّذِيْنَ كَفَرُوْا لِلَّذِيْنَ اٰمَنُوْٓا اَنُطْعِمُ مَنْ لَّوْ يَشَاۤءُ اللّٰهُ اَطْعَمَهٗٓۖ اِنْ اَنْتُمْ اِلَّا فِيْ ضَلٰلٍ مُّبِيْنٍ ۝٤٧</p>
+        <p class="text-muted fst-italic mt-3">wa idzâ qîla lahum anfiqû mimmâ razaqakumullâhu qâlalladzîna kafarû lilladzîna âmanû a nuth‘imu mal lau yasyâ'ullâhu ath‘amahû in antum illâ fî dlalâlim mubîn</p>
+        <p class="mt-3">Apabila dikatakan kepada mereka, “Infakkanlah sebagian rezeki yang diberikan Allah kepadamu,” orang-orang yang kufur itu berkata kepada orang-orang yang beriman, “Apakah pantas kami memberi makan kepada orang-orang yang jika Allah menghendaki, Dia akan memberinya makan? Kamu benar-benar dalam kesesatan yang nyata.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَيَقُوْلُوْنَ مَتٰى هٰذَا الْوَعْدُ اِنْ كُنْتُمْ صٰدِقِيْنَ ۝٤٨</p>
+        <p class="text-muted fst-italic mt-3">wa yaqûlûna matâ hâdzal-wa‘du ing kuntum shâdiqîn</p>
+        <p class="mt-3">Mereka berkata, “Kapankah janji (hari Kebangkitan) ini (terjadi) jika kamu orang-orang benar?”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">مَا يَنْظُرُوْنَ اِلَّا صَيْحَةً وَّاحِدَةً تَأْخُذُهُمْ وَهُمْ يَخِصِّمُوْنَ ۝٤٩</p>
+        <p class="text-muted fst-italic mt-3">mâ yandhurûna illâ shaiḫataw wâḫidatan ta'khudzuhum wa hum yakhishshimûn</p>
+        <p class="mt-3">Mereka hanya menunggu satu teriakan yang akan membinasakan mereka saat mereka (sibuk) bertengkar (tentang urusan dunia).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">فَلَا يَسْتَطِيْعُوْنَ تَوْصِيَةً وَّلَآ اِلٰٓى اَهْلِهِمْ يَرْجِعُوْنَࣖ ۝٥٠</p>
+        <p class="text-muted fst-italic mt-3">fa lâ yastathî‘ûna taushiyataw wa lâ ilâ ahlihim yarji‘ûn</p>
+        <p class="mt-3">Oleh sebab itu, mereka tidak dapat berwasiat dan tidak dapat kembali kepada keluarganya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَنُفِخَ فِى الصُّوْرِ فَاِذَا هُمْ مِّنَ الْاَجْدَاثِ اِلٰى رَبِّهِمْ يَنْسِلُوْنَ ۝٥١</p>
+        <p class="text-muted fst-italic mt-3">wa nufikha fish-shûri fa idzâ hum minal-ajdâtsi ilâ rabbihim yansilûn</p>
+        <p class="mt-3">Sangkakala pun ditiup dan seketika itu mereka bergerak cepat dari kuburnya menuju kepada Tuhannya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">قَالُوْا يٰوَيْلَنَا مَنْۢ بَعَثَنَا مِنْ مَّرْقَدِنَاࣝ هٰذَا مَا وَعَدَ الرَّحْمٰنُ وَصَدَقَ الْمُرْسَلُوْنَ ۝٥٢</p>
+        <p class="text-muted fst-italic mt-3">qâlû yâ wailanâ mam ba‘atsanâ mim marqadinâ hâdzâ mâ wa‘adar-raḫmânu wa shadaqal-mursalûn</p>
+        <p class="mt-3">Mereka berkata, “Celakalah kami! Siapakah yang membangkitkan kami dari tempat tidur kami (kubur)?” (Lalu, dikatakan kepada mereka,) “Inilah yang dijanjikan (Allah) Yang Maha Pengasih dan benarlah para rasul(-Nya).”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنْ كَانَتْ اِلَّا صَيْحَةً وَّاحِدَةً فَاِذَا هُمْ جَمِيْعٌ لَّدَيْنَا مُحْضَرُوْنَ ۝٥٣</p>
+        <p class="text-muted fst-italic mt-3">ing kânat illâ shaiḫataw wâḫidatan fa idzâ hum jamî‘ul ladainâ muḫdlarûn</p>
+        <p class="mt-3">Teriakan itu hanya sekali saja, maka seketika itu mereka semua dihadapkan kepada Kami (untuk dihisab).</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">فَالْيَوْمَ لَا تُظْلَمُ نَفْسٌ شَيْـًٔا وَّلَا تُجْزَوْنَ اِلَّا مَا كُنْتُمْ تَعْمَلُوْنَ ۝٥٤</p>
+        <p class="text-muted fst-italic mt-3">fal-yauma lâ tudhlamu nafsun syai'aw wa lâ tujzauna illâ mâ kuntum ta‘malûn</p>
+        <p class="mt-3">Pada hari itu tidak ada sama sekali orang yang dirugikan sedikit pun. Kamu tidak akan diberi balasan, kecuali atas apa yang telah kamu kerjakan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّ اَصْحٰبَ الْجَنَّةِ الْيَوْمَ فِيْ شُغُلٍ فٰكِهُوْنَۚ ۝٥٥</p>
+        <p class="text-muted fst-italic mt-3">inna ash-ḫâbal-jannatil-yauma fî syughulin fâkihûn</p>
+        <p class="mt-3">Sesungguhnya penghuni surga pada hari itu berada dalam kesibukan (sehingga tidak sempat berpikir tentang penghuni neraka) lagi bersenang-senang.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">هُمْ وَاَزْوَاجُهُمْ فِيْ ظِلٰلٍ عَلَى الْاَرَاۤىِٕكِ مُتَّكِــُٔوْنَۚ ۝٥٦</p>
+        <p class="text-muted fst-italic mt-3">hum wa azwâjuhum fî dhilâlin ‘alal-arâ'iki muttaki'ûn</p>
+        <p class="mt-3">Mereka dan pasangan-pasangannya berada dalam tempat yang teduh sambil berbaring di atas ranjang berkelambu.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَهُمْ فِيْهَا فَاكِهَةٌ وَّلَهُمْ مَّا يَدَّعُوْنَۚ ۝٥٧</p>
+        <p class="text-muted fst-italic mt-3">lahum fîhâ fâkihatuw wa lahum mâ yadda‘ûn</p>
+        <p class="mt-3">Di (surga) itu mereka memperoleh buah-buahan dan apa saja yang mereka inginkan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">سَلٰمٌۗ قَوْلًا مِّنْ رَّبٍّ رَّحِيْمٍ ۝٥٨</p>
+        <p class="text-muted fst-italic mt-3">salâm, qaulam mir rabbir raḫîm</p>
+        <p class="mt-3">(Kepada mereka dikatakan,) “Salam sejahtera” sebagai ucapan dari Tuhan Yang Maha Penyayang.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَامْتَازُوا الْيَوْمَ اَيُّهَا الْمُجْرِمُوْنَ ۝٥٩</p>
+        <p class="text-muted fst-italic mt-3">wamtâzul-yauma ayyuhal-mujrimûn</p>
+        <p class="mt-3">(Dikatakan kepada orang-orang kafir,) “Berpisahlah kamu (dari orang-orang mukmin) pada hari ini, wahai para pendurhaka!</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَلَمْ اَعْهَدْ اِلَيْكُمْ يٰبَنِيْٓ اٰدَمَ اَنْ لَّا تَعْبُدُوا الشَّيْطٰنَۚ اِنَّهٗ لَكُمْ عَدُوٌّ مُّبِيْنٌ ۝٦٠</p>
+        <p class="text-muted fst-italic mt-3">a lam a‘had ilaikum yâ banî âdama al lâ ta‘budusy-syaithân, innahû lakum ‘aduwwum mubîn</p>
+        <p class="mt-3">Bukankah Aku telah berpesan kepadamu dengan sungguh-sungguh, wahai anak cucu Adam, bahwa janganlah kamu menyembah setan? Sesungguhnya setan itu musuh yang nyata bagi kamu.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَاَنِ اعْبُدُوْنِيْۗ هٰذَا صِرَاطٌ مُّسْتَقِيْمٌ ۝٦١</p>
+        <p class="text-muted fst-italic mt-3">wa ani‘budûnî, hâdzâ shirâthum mustaqîm</p>
+        <p class="mt-3">(Begitu juga bahwa) sembahlah Aku. Inilah jalan yang lurus.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَلَقَدْ اَضَلَّ مِنْكُمْ جِبِلًّا كَثِيْرًاۗ اَفَلَمْ تَكُوْنُوْا تَعْقِلُوْنَ ۝٦٢</p>
+        <p class="text-muted fst-italic mt-3">wa laqad adlalla mingkum jibillang katsîrâ, a fa lam takûnû ta‘qilûn</p>
+        <p class="mt-3">Sungguh, ia (setan itu) benar-benar telah menyesatkan sangat banyak orang dari kamu. Maka, apakah kamu tidak mengerti?</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">هٰذِهٖ جَهَنَّمُ الَّتِيْ كُنْتُمْ تُوْعَدُوْنَ ۝٦٣</p>
+        <p class="text-muted fst-italic mt-3">hâdzihî jahannamullatî kuntum tû‘adûn</p>
+        <p class="mt-3">Inilah (neraka) Jahanam yang dahulu telah diperingatkan kepadamu.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِصْلَوْهَا الْيَوْمَ بِمَا كُنْتُمْ تَكْفُرُوْنَ ۝٦٤</p>
+        <p class="text-muted fst-italic mt-3">ishlauhal-yauma bimâ kuntum takfurûn</p>
+        <p class="mt-3">Masuklah ke dalamnya pada hari ini karena dahulu kamu mengingkarinya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَلْيَوْمَ نَخْتِمُ عَلٰٓى اَفْوَاهِهِمْ وَتُكَلِّمُنَآ اَيْدِيْهِمْ وَتَشْهَدُ اَرْجُلُهُمْ بِمَا كَانُوْا يَكْسِبُوْنَ ۝٦٥</p>
+        <p class="text-muted fst-italic mt-3">al-yauma nakhtimu ‘alâ afwâhihim wa tukallimunâ aidîhim wa tasy-hadu arjuluhum bimâ kânû yaksibûn</p>
+        <p class="mt-3">Pada hari ini Kami membungkam mulut mereka. Tangan merekalah yang berkata kepada Kami dan kaki merekalah yang akan bersaksi terhadap apa yang dahulu mereka kerjakan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَلَوْ نَشَاۤءُ لَطَمَسْنَا عَلٰٓى اَعْيُنِهِمْ فَاسْتَبَقُوا الصِّرَاطَ فَاَنّٰى يُبْصِرُوْنَ ۝٦٦</p>
+        <p class="text-muted fst-italic mt-3">walau nasyâ'u lathamasnâ ‘alâ a‘yunihim fastabaqush-shirâtha fa annâ yubshirûn</p>
+        <p class="mt-3">Seandainya Kami menghendaki, pastilah Kami akan menghapus penglihatan (membutakan) mereka sehingga mereka berlomba-lomba (mencari) jalan (selamat). Maka, bagaimana mungkin mereka dapat melihat?</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَلَوْ نَشَاۤءُ لَمَسَخْنٰهُمْ عَلٰى مَكَانَتِهِمْ فَمَا اسْتَطَاعُوْا مُضِيًّا وَّلَا يَرْجِعُوْنَࣖ ۝٦٧</p>
+        <p class="text-muted fst-italic mt-3">walau nasyâ'u lamasakhnâhum ‘alâ makânatihim famastathâ‘û mudliyyaw wa lâ yarji‘ûn</p>
+        <p class="mt-3">Seandainya Kami menghendaki, pastilah Kami akan mengubah bentuk mereka di tempat mereka berada, sehingga mereka tidak sanggup meneruskan perjalanan dan juga tidak sanggup pulang kembali.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَمَنْ نُّعَمِّرْهُ نُنَكِّسْهُ فِى الْخَلْقِۗ اَفَلَا يَعْقِلُوْنَ ۝٦٨</p>
+        <p class="text-muted fst-italic mt-3">wa man nu‘ammir-hu nunakkis-hu fil-khalq, a fa lâ ya‘qilûn</p>
+        <p class="mt-3">Siapa yang Kami panjangkan umurnya niscaya Kami balik proses penciptaannya (dari kuat menuju lemah). Maka, apakah mereka tidak mengerti?</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَمَا عَلَّمْنٰهُ الشِّعْرَ وَمَا يَنْۢبَغِيْ لَهٗۗ اِنْ هُوَ اِلَّا ذِكْرٌ وَّقُرْاٰنٌ مُّبِيْنٌۙ ۝٦٩</p>
+        <p class="text-muted fst-italic mt-3">wa mâ ‘allamnâhusy-syi‘ra wa mâ yambaghî lah, in huwa illâ dzikruw wa qur'ânum mubîn</p>
+        <p class="mt-3">Kami tidak mengajarkan syair kepadanya (Nabi Muhammad) dan (bersyair) itu tidaklah pantas baginya. (Wahyu yang Kami turunkan kepadanya) itu tidak lain hanyalah pelajaran dan Al-Qur’an yang jelas,</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لِّيُنْذِرَ مَنْ كَانَ حَيًّا وَّيَحِقَّ الْقَوْلُ عَلَى الْكٰفِرِيْنَ ۝٧٠</p>
+        <p class="text-muted fst-italic mt-3">liyundzira mang kâna ḫayyaw wa yaḫiqqal-qaulu ‘alal-kâfirîn</p>
+        <p class="mt-3">agar dia (Nabi Muhammad) memberi peringatan kepada orang-orang yang hidup (hatinya) dan agar ketetapan (azab) terhadap orang-orang kafir itu menjadi pasti.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَوَلَمْ يَرَوْا اَنَّا خَلَقْنَا لَهُمْ مِّمَّا عَمِلَتْ اَيْدِيْنَآ اَنْعَامًا فَهُمْ لَهَا مٰلِكُوْنَ ۝٧١</p>
+        <p class="text-muted fst-italic mt-3">a wa lam yarau annâ khalaqnâ lahum mimmâ ‘amilat aidînâ an‘âman fa hum lahâ mâlikûn</p>
+        <p class="mt-3">Tidakkah mereka mengetahui bahwa Kami telah menciptakan untuk mereka hewan-hewan ternak dari ciptaan tangan Kami (sendiri), lalu mereka menjadi pemiliknya?</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَذَلَّلْنٰهَا لَهُمْ فَمِنْهَا رَكُوْبُهُمْ وَمِنْهَا يَأْكُلُوْنَ ۝٧٢</p>
+        <p class="text-muted fst-italic mt-3">wa dzallalnâhâ lahum fa min-hâ rakûbuhum wa min-hâ ya'kulûn</p>
+        <p class="mt-3">Kami menjadikannya (hewan-hewan itu) tunduk kepada mereka. Sebagian di antaranya menjadi tunggangan mereka dan sebagian (lagi) mereka makan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَلَهُمْ فِيْهَا مَنَافِعُ وَمَشَارِبُۗ اَفَلَا يَشْكُرُوْنَ ۝٧٣</p>
+        <p class="text-muted fst-italic mt-3">wa lahum fîhâ manâfi‘u wa masyârib, a fa lâ yasykurûn</p>
+        <p class="mt-3">Pada dirinya (hewan-hewan ternak itu) terdapat berbagai manfaat dan minuman untuk mereka. Apakah mereka tidak bersyukur?</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَاتَّخَذُوْا مِنْ دُوْنِ اللّٰهِ اٰلِهَةً لَّعَلَّهُمْ يُنْصَرُوْنَۗ ۝٧٤</p>
+        <p class="text-muted fst-italic mt-3">wattakhadzû min dûnillâhi âlihatal la‘allahum yunsharûn</p>
+        <p class="mt-3">Mereka menjadikan sesembahan selain Allah agar mereka mendapat pertolongan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">لَا يَسْتَطِيْعُوْنَ نَصْرَهُمْۙ وَهُمْ لَهُمْ جُنْدٌ مُّحْضَرُوْنَ ۝٧٥</p>
+        <p class="text-muted fst-italic mt-3">lâ yastathî‘ûna nashrahum wa hum lahum jundum muḫdlarûn</p>
+        <p class="mt-3">(Sesembahan) itu tidak mampu menolong mereka, padahal (sesembahan) itu adalah tentara yang dihadirkan untuk menjaganya.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">فَلَا يَحْزُنْكَ قَوْلُهُمْۘ اِنَّا نَعْلَمُ مَا يُسِرُّوْنَ وَمَا يُعْلِنُوْنَ ۝٧٦</p>
+        <p class="text-muted fst-italic mt-3">fa lâ yaḫzungka qauluhum, innâ na‘lamu mâ yusirrûna wa mâ yu‘linûn</p>
+        <p class="mt-3">Maka, jangan sampai ucapan mereka membuat engkau (Nabi Muhammad) bersedih hati. Sesungguhnya Kami mengetahui apa yang mereka rahasiakan dan apa yang mereka nyatakan.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَوَلَمْ يَرَ الْاِنْسَانُ اَنَّا خَلَقْنٰهُ مِنْ نُّطْفَةٍ فَاِذَا هُوَ خَصِيْمٌ مُّبِيْنٌ ۝٧٧</p>
+        <p class="text-muted fst-italic mt-3">a wa lam yaral-insânu annâ khalaqnâhu min nuthfatin fa idzâ huwa khashîmum mubîn</p>
+        <p class="mt-3">Tidakkah manusia mengetahui bahwa Kami menciptakannya dari setetes mani? Kemudian tiba-tiba saja dia menjadi musuh yang nyata.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">وَضَرَبَ لَنَا مَثَلًا وَّنَسِيَ خَلْقَهٗۗ قَالَ مَنْ يُّحْيِ الْعِظَامَ وَهِيَ رَمِيْمٌ ۝٧٨</p>
+        <p class="text-muted fst-italic mt-3">wa dlaraba lanâ matsalaw wa nasiya khalqah, qâla may yuḫyil-‘idhâma wa hiya ramîm</p>
+        <p class="mt-3">Dia membuat perumpamaan bagi Kami dan melupakan asal penciptaannya. Dia berkata, “Siapakah yang bisa menghidupkan tulang-belulang yang telah hancur luluh?”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">قُلْ يُحْيِيْهَا الَّذِيْٓ اَنْشَاَهَآ اَوَّلَ مَرَّةٍۗ وَهُوَ بِكُلِّ خَلْقٍ عَلِيْمٌۙ ۝٧٩</p>
+        <p class="text-muted fst-italic mt-3">qul yuḫyîhalladzî ansya'ahâ awwala marrah, wa huwa bikulli khalqin ‘alîm</p>
+        <p class="mt-3">Katakanlah (Nabi Muhammad), “Yang akan menghidupkannya adalah Zat yang menciptakannya pertama kali. Dia Maha Mengetahui setiap makhluk.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">ࣙالَّذِيْ جَعَلَ لَكُمْ مِّنَ الشَّجَرِ الْاَخْضَرِ نَارًاۙ فَاِذَآ اَنْتُمْ مِّنْهُ تُوْقِدُوْنَ ۝٨٠</p>
+        <p class="text-muted fst-italic mt-3">alladzî ja‘ala lakum minasy-syajaril-akhdlari nâran fa idzâ antum min-hu tûqidûn</p>
+        <p class="mt-3">(Dialah) yang menjadikan api untukmu dari kayu yang hijau. Kemudian, seketika itu kamu menyalakan (api) darinya.”</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اَوَلَيْسَ الَّذِيْ خَلَقَ السَّمٰوٰتِ وَالْاَرْضَ بِقٰدِرٍ عَلٰٓى اَنْ يَّخْلُقَ مِثْلَهُمْۗ بَلٰى وَهُوَ الْخَلّٰقُ الْعَلِيْمُ ۝٨١</p>
+        <p class="text-muted fst-italic mt-3">a wa laisalladzî khalaqas-samâwâti wal-ardla biqâdirin ‘alâ ay yakhluqa mitslahum, balâ wa huwal-khallâqul-‘alîm</p>
+        <p class="mt-3">Bukankah Zat yang menciptakan langit dan bumi mampu menciptakan manusia yang serupa mereka itu (di akhirat kelak)? Benar. Dialah yang Maha Banyak Mencipta lagi Maha Mengetahui.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">اِنَّمَآ اَمْرُهٗٓ اِذَآ اَرَادَ شَيْـًٔاۖ اَنْ يَّقُوْلَ لَهٗ كُنْ فَيَكُوْنُ ۝٨٢</p>
+        <p class="text-muted fst-italic mt-3">innamâ amruhû idzâ arâda syai'an ay yaqûla lahû kun fa yakûn</p>
+        <p class="mt-3">Sesungguhnya ketetapan-Nya, jika Dia menghendaki sesuatu, Dia hanya berkata kepadanya, “Jadilah!” Maka, jadilah (sesuatu) itu.</p>
+    </div>
+    <div class="card">
+        <p class="arabic-text">فَسُبْحٰنَ الَّذِيْ بِيَدِهٖ مَلَكُوْتُ كُلِّ شَيْءٍ وَّاِلَيْهِ تُرْجَعُوْنَࣖ ۝٨٣</p>
+        <p class="text-muted fst-italic mt-3">fa sub-ḫânalladzî biyadihî malakûtu kulli syai'iw wa ilaihi turja‘ûn</p>
+        <p class="mt-3">Maka, Mahasuci (Allah) yang di tangan-Nya kekuasaan atas segala sesuatu dan kepada-Nya kamu dikembalikan.</p>
+    </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-5 text-muted text-sm">
+            <p>&copy; 2024 Ratibul Haddad Interaktif. Dibuat untuk kemudahan berdzikir.</p>
+        </footer>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Fungsi untuk menampilkan section berdasarkan ID
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-section') === sectionId) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // Pendaftaran Service Worker untuk fungsionalitas offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker berhasil didaftarkan:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Pendaftaran Service Worker gagal:', error);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>
